@@ -1,3 +1,4 @@
+import Button from "../components/Button/Button"
 import Input from "../components/Input/Input"
 import React from "react"
 
@@ -10,6 +11,10 @@ const Login = () => {
       setPassword(inputValue)
     }
 
+    const handleLogin = () => {
+      console.log('login clicked')
+    }
+
   return (
     <div>
         <Input
@@ -18,6 +23,10 @@ const Login = () => {
          placeholder="Enter Password"
          title={"Password"}
          required={true}
+        />
+        <Button 
+        onClick={handleLogin}
+        cta = {'Login'}
         />
     </div>
   )
