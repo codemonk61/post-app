@@ -12,6 +12,7 @@ const Button: React.FC<ButtonPropsType> = ({ onClick, cta = "submit" }) => {
          dark:focus:ring-offset-gray-900"
         onClick={onClick}
       >
+        
         {cta}
       </button>
     </div>
