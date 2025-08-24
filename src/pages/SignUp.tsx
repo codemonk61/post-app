@@ -3,6 +3,7 @@ import Card from "../components/card/Card";
 import Input from "../components/Input/Input";
 import Dropdown from "../components/dropdown/Dropdown";
 import Button from "../components/Button/Button";
+import { register } from "../fetch";
 
 const options = [
   {
@@ -24,6 +25,7 @@ const SignUp = () => {
   const [mobileNo, setMobileNo] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [cnfPassword, setCnfPassword] = useState<string>("");
+  const [role, setRole] = useState<string>("user");
 
   const handleUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
@@ -34,6 +36,7 @@ const SignUp = () => {
   };
 
   const handleDropdown = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setRole(e.target.value);
     console.log(e.target.value);
   };
 
@@ -45,8 +48,29 @@ const SignUp = () => {
     setCnfPassword(e.target.value);
   };
 
-  const handleSignUp = () => {
-    console.log("registered succesfully");
+  const handleSignUp = async () => {
+    const user = {
+      username: username,
+      mobile_no: mobileNo,
+      role: role,
+      password: password,
+    };
+
+    try {
+      const data = await register(user); // ✅ wait for API call
+      console.log(data); // ✅ result
+    } catch (err) {
+      console.error("Signup error:", err);
+    }
+
+    console.log(
+      "registered succesfully",
+      username,
+      mobileNo,
+      role,
+      password,
+      cnfPassword
+    );
   };
 
   return (
