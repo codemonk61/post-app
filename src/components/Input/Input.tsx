@@ -4,6 +4,7 @@ const Input:React.FC<InputPropsType>  = ({handleInput, value, placeholder, title
   return (
     <div>
         <span className="text-gray-500"> {title}</span>{required && <span className="text-red-500">{'*'}</span>}
+        
         <input
          className=" mt-2 mb-3 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 pr-10 text-gray-900 placeholder:text-gray-400
            shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500

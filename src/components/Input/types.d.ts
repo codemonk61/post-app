@@ -1,7 +1,7 @@
 
 
 export type InputPropsType = {
-    handleInput: (e: React.ChangeEvent<HTMLInputElement>)=>viod, 
+    handleInput: (e: React.ChangeEvent<HTMLInputElement>)=> void, 
     value: string | number, 
     placeholder: string, 
     title: string,
