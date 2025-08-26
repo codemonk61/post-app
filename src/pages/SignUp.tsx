@@ -54,10 +54,11 @@ const SignUp = () => {
       mobile_no: mobileNo,
       role: role,
       password: password,
-    };
+    };  
 
     try {
-      const data = await register(user); // ✅ wait for API call
+      const data = await register(user); 
+      // ✅ wait for API call
       console.log(data); // ✅ result
     } catch (err) {
       console.error("Signup error:", err);
