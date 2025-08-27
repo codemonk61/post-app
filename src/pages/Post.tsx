@@ -2,7 +2,7 @@
 
 const Post = () => {
   return (
-    <div>Post Page added</div>
+    <div>No post found</div>
   )
 }
 
