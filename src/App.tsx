@@ -4,6 +4,7 @@ import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import PostPage from "./pages/PostPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/posts" element={<PostPage />} />
         <Route path="*" element={<h1> page not found!</h1> } />
       </Routes>
     </BrowserRouter>
