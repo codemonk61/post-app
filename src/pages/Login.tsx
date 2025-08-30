@@ -33,10 +33,10 @@ const Login = () => {
       if (userInfo?.role === "admin") {
         navigate("/admin");
       } else if (userInfo?.role === "user") {
-        navigate("/");
+        navigate("/post");
       } else {
         // fallback if role is missing
-        navigate("/");
+        navigate("/post");
       }
     } catch (err) {
       console.error("Login error:", err);

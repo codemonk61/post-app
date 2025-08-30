@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import Home from "./pages/Home";
+// import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import PostPage from "./pages/PostPage";
+// import Post from "./components/Post/Post";
 
 function App() {
   return (
@@ -21,14 +22,14 @@ function App() {
           }
         />
         <Route
-          path="/"
+          path="/post"
           element={
             <ProtectedRoute>
-              <Home />
+              <PostPage />
             </ProtectedRoute>
           }
         />
-        <Route path="/posts" element={<PostPage />} />
+       
         <Route path="*" element={<h1> page not found!</h1> } />
       </Routes>
     </BrowserRouter>
