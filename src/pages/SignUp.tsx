@@ -21,6 +21,10 @@ const options = [
 ];
 
 const SignUp = () => {
+ 
+
+let z = ""
+console.log((z  ?? 100).length);  
   const [username, setUserName] = useState<string>("");
   const [mobileNo, setMobileNo] = useState<string>("");
   const [password, setPassword] = useState<string>("");

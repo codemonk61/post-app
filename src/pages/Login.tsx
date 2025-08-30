@@ -52,8 +52,8 @@ const Login = () => {
         <Input
           handleInput={handleMobileNo}
           value={mobileNo}
-          placeholder="Enter your username"
-          title={"User Name"}
+          placeholder="Enter your mobile no"
+          title={"Mobile No"}
           required={true}
         />
 
