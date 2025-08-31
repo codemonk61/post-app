@@ -1,53 +1,85 @@
 import Header from "../components/header/Header"
 import Post from "../components/Post/Post"
 import { useEffect, useState } from 'react'
-import { getPostById } from "../fetch";
+import { createPost, getPostById } from "../fetch";
 import { getUserFromToken } from "../utility/auth";
-
+import Button from "../components/Button/Button";
+import CreatePostModal from "../components/postModal/CreatePostModal";
 
 const PostPage = () => {
-  const [posts, setPosts] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<any>(true);
+
+  const [posts, setPosts] = useState<any>([]);
+  const [userPost, setUserPost] = useState<any>({title: "", description: "", image: ""});
+  const [loading, setLoading] = useState<any>(true);
+  const [error, setError] = useState<any>(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCreatePostModal = () => {
+    setShowModal(true);
+  };
+
+  const createUserPost = async(postData: any) => {
+    const res = await createPost(postData)
+    const data= await res.json();
+    console.log("Post Created:", data);
+    setUserPost(postData);
+  };
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const userInfo = getUserFromToken();
-      console.log("User Info:", userInfo);
       try {
-        const data = await getPostById(userInfo?.id || "");
-        console.log(data)
-      } catch (error) {
-        console.error("Failed to fetch posts", error);
-        setError(error);
+        const data: any = await getPostById();
+        setPosts(data);
+      } catch (error: any) {
+        setError(true);
       } finally {
         setLoading(false);
       }
-    }
-    fetchPosts()
-  }, [])
+    };
+    fetchPosts();
+  }, []);
 
   if (loading) {
-    return <>Loading...</>
+    return <>Loading...</>;
   }
 
-
+  console.log("Posts:", userPost);
   return (
     <>
+      {showModal && (
+        <CreatePostModal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          onCreate={(postData: any) => {
+            createUserPost(postData);
+            setShowModal(false);
+          }}
+        />
+      )}
       <Header />
-      {error.message && <div>{error.message}</div>}
-      {
-        posts.map((post) => {
-          return <Post
-            title={post.title}
-            imageUrl={post.imageUrl}
-            description={post.description}
-          />
-        })
-      }
-
+      {error ? (
+        <div>{posts?.message}</div>
+      ) : (
+        <>
+          {posts && posts.length > 0 ? (
+            posts.map((post: any, index: any) => (
+              <Post
+                key={index}
+                title={post.title}
+                imageUrl={post.image}
+                description={post.description}
+              />
+            ))
+          ) : (
+            <div className="flex justify-center items-center flex-col h-full">
+              <p>No posts found.</p>
+              <Button cta="Create Post" onClick={handleCreatePostModal} />
+            </div>
+          )}
+        </>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default PostPage
+export default PostPage;

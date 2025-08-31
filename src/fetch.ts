@@ -41,10 +41,36 @@ export type PostType = {
   imageUrl: string;
 };
 
-export const getPostById = async (id: string) => {
+export const createPost = async (postData: any) => {
   const token = localStorage.getItem("token");
 
-  const res = await fetch(`http://localhost:5000/api/post/${id}`, {
+  // create FormData instead of raw JSON
+  const formData = new FormData();
+  formData.append("title", postData.title);
+  formData.append("description", postData.description);
+
+  if (postData.image) {
+    formData.append("image", postData.image);
+  }
+
+  const res = await fetch(`${BASE_URL}/api/post`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`, 
+    },
+    body: formData,
+  });
+
+  const data = await res.json();
+  console.log("Created Post:", data);
+  return data;
+};
+
+
+export const getPostById = async () => {
+  const token = localStorage.getItem("token");
+
+  const res = await fetch(`${BASE_URL}/api/post/`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

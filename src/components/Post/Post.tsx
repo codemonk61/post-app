@@ -3,12 +3,13 @@ import Card from "../card/Card";
 import type { PostPropsType } from "./types";
 
 const Post: React.FC<PostPropsType> = ({ description, imageUrl, title }) => {
+
   return (
     <Card className="p-4 rounded-2xl shadow-md bg-white hover:shadow-lg transition-shadow duration-300">
       {/* Image */}
       <div className="w-full h-48 overflow-hidden rounded-xl mb-4">
         <img
-          src={imageUrl}
+          src={`http://localhost:5000${imageUrl}`}
           alt={title}
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
         />
