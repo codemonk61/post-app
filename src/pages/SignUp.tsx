@@ -118,7 +118,10 @@ const SignUp = () => {
           title={"Confirm Password"}
           required={true}
         />
+
         <Button onClick={handleSignUp} cta={"Register"} />
+        <p>Already have an account? <a href="/" className="text-indigo-600">Login</a></p>
+      
       </Card>
     </div>
   );

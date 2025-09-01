@@ -70,7 +70,7 @@ export const createPost = async (postData: any) => {
 export const getPostById = async () => {
   const token = localStorage.getItem("token");
 
-  const res = await fetch(`${BASE_URL}/api/post/`, {
+  const res = await fetch(`${BASE_URL}/api/post/user`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

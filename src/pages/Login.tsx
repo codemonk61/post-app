@@ -53,8 +53,8 @@ const Login = () => {
         <Input
           handleInput={handleMobileNo}
           value={mobileNo}
-          placeholder="Enter your username"
-          title={"User Name"}
+          placeholder="Enter your Mobile Number"
+          title={"Mobile Number"}
           required={true}
         />
 
@@ -67,6 +67,7 @@ const Login = () => {
         />
 
         <Button onClick={handleLogin} cta={"Login"} />
+        <p>Don't have an account? <a href="/signup" className="text-indigo-600">Signup</a></p>
       </Card>
     </div>
   );
